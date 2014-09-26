@@ -24,7 +24,7 @@ module Alchemy
       attr_accessor field.to_sym
     end
     
-    unless config['validate_fields'].blank? 
+    if config['validate_fields'].present? 
       config['validate_fields'].each do |field|
         validates_presence_of field
     end
