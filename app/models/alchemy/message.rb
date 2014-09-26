@@ -23,10 +23,12 @@ module Alchemy
     config['fields'].each do |field|
       attr_accessor field.to_sym
     end
-
-    config['validate_fields'].each do |field|
-      validates_presence_of field
-
+    
+    unless config['validate_fields'].blank? 
+      config['validate_fields'].each do |field|
+        validates_presence_of field
+    end
+    
       case field.to_sym
       when /email/
         validates_format_of field,
